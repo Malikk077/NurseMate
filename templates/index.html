@@ -1,0 +1,339 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Llama</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f3f4f6;
+        }
+        .chat-container {
+            margin: auto;
+            width: 80%;
+            max-width: 600px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-box {
+            padding: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .chat-box .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .chat-box .user {
+            justify-content: flex-end;
+        }
+        .chat-box .assistant {
+            justify-content: flex-start;
+        }
+        .message-content {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            display: inline-block;
+        }
+        .user .message-content {
+            background-color: #007bff;
+            color: white;
+            border-bottom-right-radius: 0;
+        }
+        .assistant .message-content {
+            background-color: #f1f1f1;
+            color: #333;
+            border-bottom-left-radius: 0;
+        }
+        .user .icon, .assistant .icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        .user .icon {
+            background-color: #007bff;
+            color: white;
+        }
+        .assistant .icon {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            background-color: #f9f9f9;
+            padding: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 14px;
+            margin-right: 10px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .chat-input input:focus {
+            border-color: #007bff;
+        }
+        .chat-input button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .chat-input button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <center><h2>NurseMate- Smart Chatbot</h2></center>
+        <div class="chat-box" id="chatBox"></div>
+        <div class="chat-input">
+            <input type="text" id="userMessage" placeholder="Type your message...">
+            <button class="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chatBox');
+        const userMessageInput = document.getElementById('userMessage');
+
+        async function sendMessage() {
+            const userMessage = userMessageInput.value;
+            if (!userMessage) return;
+
+            // Display user message
+            chatBox.innerHTML += `<div class="message user"><div class="message-content">${userMessage}</div><div class="icon">U</div></div>`;
+            userMessageInput.value = '';
+
+            // Send message to server
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: userMessage })
+                });
+                const data = await response.json();
+
+                // Display chatbot response
+                chatBox.innerHTML += `<div class="message assistant"><div class="icon">A</div><div class="message-content">${data.response}</div></div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (error) {
+                chatBox.innerHTML += `<div class="message assistant"><div class="icon">A</div><div class="message-content">Sorry, something went wrong.</div></div>`;
+            }
+        }
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Llama</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background-color: #f3f4f6;
+        }
+        .chat-container {
+            margin: auto;
+            width: 80%;
+            max-width: 600px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-box {
+            padding: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+        .chat-box .message {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .chat-box .user {
+            justify-content: flex-end;
+        }
+        .chat-box .assistant {
+            justify-content: flex-start;
+        }
+        .message-content {
+            max-width: 70%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.5;
+            display: inline-block;
+        }
+        .user .message-content {
+            background-color: #007bff;
+            color: white;
+            border-bottom-right-radius: 0;
+        }
+        .assistant .message-content {
+            background-color: #f1f1f1;
+            color: #333;
+            border-bottom-left-radius: 0;
+        }
+        .user .icon, .assistant .icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        .user .icon {
+            background-color: #007bff;
+            color: white;
+        }
+        .assistant .icon {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+            background-color: #f9f9f9;
+            padding: 10px;
+        }
+        .chat-input input {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 14px;
+            margin-right: 10px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .chat-input input:focus {
+            border-color: #007bff;
+        }
+        .chat-input button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .chat-input button:hover {
+            background-color: #0056b3;
+        }
+        .header-links {
+            display: flex;
+            justify-content: flex-end;
+            margin: 10px 20px;
+        }
+        .header-links a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 16px;
+        }
+        .header-links a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-links">
+        <a href="/feelings" id="historyLink">What’s on your mind?</a>
+        <a href="/view_history" id="historyLink">History</a>
+        <a href="/login" id="logoutLink">Logout</a>
+    </div>
+
+    <div class="chat-container">
+        <center><h2>NurseMate- Smart Chatbot</h2></center>
+        <div class="chat-box" id="chatBox"></div>
+        <div class="chat-input">
+            <input type="text" id="userMessage" placeholder="Type your message...">
+            <button class="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chatBox');
+        const userMessageInput = document.getElementById('userMessage');
+
+        async function sendMessage() {
+            const userMessage = userMessageInput.value;
+            if (!userMessage) return;
+
+            // Display user message
+            chatBox.innerHTML += `<div class="message user"><div class="message-content">${userMessage}</div><div class="icon">U</div></div>`;
+            userMessageInput.value = '';
+
+            // Send message to server
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: userMessage })
+                });
+                const data = await response.json();
+
+                // Display chatbot response
+                chatBox.innerHTML += `<div class="message assistant"><div class="icon">A</div><div class="message-content">${data.response}</div></div>`;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            } catch (error) {
+                chatBox.innerHTML += `<div class="message assistant"><div class="icon">A</div><div class="message-content">Sorry, something went wrong.</div></div>`;
+            }
+        }
+    </script>
+</body>
+</html>
